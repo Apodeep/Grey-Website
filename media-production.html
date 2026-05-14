@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Media Production - Grey Agency</title>
+    <meta name="description" content="Cinematic Media Production services by Grey Agency. Visual storytelling that captures attention.">
+
+    <link rel="icon" type="image/png" href="assets/images/grey logo 2.png">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#d5cfce',
+                        'primary-dark': '#afacab',
+                        'secondary': '#989494',
+                        'dark': '#0f0f0f',
+                        'dark-light': '#1c1c1c',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css?v=7">
+    <link rel="stylesheet" href="css/service-pages.css?v=1">
+
+    <!-- GSAP for Infinite Gallery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+
+<body class="bg-dark text-white font-sans antialiased" style="font-family: 'Cairo', sans-serif;">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 inset-x-0 z-50 pt-4 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto">
+            <div class="bg-dark/95 backdrop-blur-sm border border-primary rounded-full px-6 sm:px-8 lg:px-12">
+                <div class="grid h-16 sm:h-20 grid-cols-2 md:grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 md:gap-3 lg:gap-4">
+                    <a href="index.html" class="flex items-center justify-self-start hover:opacity-80 transition-opacity duration-300 shrink-0">
+                        <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-10 sm:h-12 w-auto">
+                    </a>
+
+                    <div class="hidden md:flex flex-nowrap items-center justify-center gap-x-2 lg:gap-x-3 xl:gap-x-4 min-w-0 w-full px-1">
+                        <a href="index.html#home" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_home">Home</a>
+                        <a href="about.html" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_about">About</a>
+                        <a href="services.html" class="nav-link shrink-0 text-primary font-bold transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_services">Services</a>
+                        <a href="index.html#partners" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_partners">Partners</a>
+                        <a href="portfolio.html" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_portfolio">Portfolio</a>
+                        <a href="projects.html" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_projects">Projects</a>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-end gap-x-3 shrink-0 justify-self-end">
+                        <button class="lang-toggle" aria-label="Switch language">عربي</button>
+                        <a href="contact.html" class="bg-primary border border-primary hover:bg-primary-dark px-5 lg:px-6 py-2 rounded-full font-semibold text-sm lg:text-base transition-all duration-300 hover:scale-105 whitespace-nowrap" style="color: #0f0f0f;" data-i18n="nav_contact">Contact Us</a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="md:hidden col-start-2 row-start-1 justify-self-end text-white hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section: Cinematic Letterbox -->
+    <section class="dm-hero" style="position:relative;height:100vh;width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:url('assets/images/portfolio/3.jpg') center/cover no-repeat;">
+        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.6);z-index:1;"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:60px;background:#000;z-index:2;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:#000;z-index:2;"></div>
+        <div class="dm-vignette"></div>
+        <div class="dm-hero-content" style="position:relative;z-index:10;text-align:center;padding:0 20px;">
+            <span style="display:inline-block;color:var(--primary);text-transform:uppercase;letter-spacing:0.3em;font-size:0.75rem;margin-bottom:20px;border:1px solid rgba(213,207,206,0.3);padding:6px 16px;border-radius:99px;">Cinematic Studio</span>
+            <h1 class="dm-hero-title" style="font-size:clamp(3.5rem,10vw,8rem);font-weight:900;line-height:0.9;text-transform:uppercase;margin-bottom:20px;opacity:0;transform:translateY(50px) scale(0.95);filter:blur(10px);" data-i18n="svc_mp_h1">Media<br>Production</h1>
+            <p class="dm-hero-subtitle" style="font-size:clamp(1rem,2vw,1.25rem);color:var(--secondary);max-width:550px;margin:0 auto 40px;line-height:1.7;opacity:0;transform:translateY(30px);" data-i18n="svc_mp_sub">High-quality visual storytelling through video, photography, and animation. We capture attention and drive action.</p>
+            <div class="dm-cta-container" style="opacity:0;transform:translateY(20px);">
+                <button class="magnetic-btn" data-i18n="svc_mp_btn">Start Production</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Services Breakdown: Film Strip -->
+    <section class="dm-services" style="padding:120px 0;background:var(--dark);">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header" style="margin-bottom:60px;text-align:center;">
+                <span class="section-label" data-i18n="dm_expertise_label">Our Craft</span>
+                <h2 class="text-4xl md:text-5xl font-bold" data-i18n="svc_media_prod">Visual Excellence</h2>
+            </div>
+            <div class="mp-filmstrip" style="display:flex;gap:20px;overflow-x:auto;padding:20px 0;scroll-snap-type:x mandatory;">
+                <div class="dm-service-card" style="min-width:260px;flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px 30px;border-radius:12px;backdrop-filter:blur(10px);scroll-snap-align:start;position:relative;border-top:4px dashed rgba(255,255,255,0.1);border-bottom:4px dashed rgba(255,255,255,0.1);">
+                    <svg class="dm-card-icon" style="width:44px;height:44px;margin-bottom:20px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <h3 class="dm-card-title" style="font-size:1.35rem;font-weight:700;margin-bottom:12px;color:#fff;" data-i18n="mp_cine_h">Cinematography</h3>
+                    <p class="dm-card-desc" style="color:var(--secondary);font-size:0.9rem;line-height:1.6;" data-i18n="mp_cine_p">Professional video production for commercials, documentaries, and social content using industry-leading equipment.</p>
+                </div>
+                <div class="dm-service-card" style="min-width:260px;flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px 30px;border-radius:12px;backdrop-filter:blur(10px);scroll-snap-align:start;position:relative;border-top:4px dashed rgba(255,255,255,0.1);border-bottom:4px dashed rgba(255,255,255,0.1);">
+                    <svg class="dm-card-icon" style="width:44px;height:44px;margin-bottom:20px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    <h3 class="dm-card-title" style="font-size:1.35rem;font-weight:700;margin-bottom:12px;color:#fff;" data-i18n="mp_motion_h">Motion Graphics</h3>
+                    <p class="dm-card-desc" style="color:var(--secondary);font-size:0.9rem;line-height:1.6;" data-i18n="mp_motion_p">Bringing static ideas to life through fluid animation and advanced visual effects that simplify complex messages.</p>
+                </div>
+                <div class="dm-service-card" style="min-width:260px;flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px 30px;border-radius:12px;backdrop-filter:blur(10px);scroll-snap-align:start;position:relative;border-top:4px dashed rgba(255,255,255,0.1);border-bottom:4px dashed rgba(255,255,255,0.1);">
+                    <svg class="dm-card-icon" style="width:44px;height:44px;margin-bottom:20px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                    <h3 class="dm-card-title" style="font-size:1.35rem;font-weight:700;margin-bottom:12px;color:#fff;" data-i18n="mp_photo_h">Photography</h3>
+                    <p class="dm-card-desc" style="color:var(--secondary);font-size:0.9rem;line-height:1.6;" data-i18n="mp_photo_p">High-end product, architectural, and lifestyle photography that highlights the best of your brand.</p>
+                </div>
+                <div class="dm-service-card" style="min-width:260px;flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px 30px;border-radius:12px;backdrop-filter:blur(10px);scroll-snap-align:start;position:relative;border-top:4px dashed rgba(255,255,255,0.1);border-bottom:4px dashed rgba(255,255,255,0.1);">
+                    <svg class="dm-card-icon" style="width:44px;height:44px;margin-bottom:20px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                    <h3 class="dm-card-title" style="font-size:1.35rem;font-weight:700;margin-bottom:12px;color:#fff;" data-i18n="mp_sound_h">Sound Design</h3>
+                    <p class="dm-card-desc" style="color:var(--secondary);font-size:0.9rem;line-height:1.6;" data-i18n="mp_sound_p">Immersive audio engineering that provides the emotional backbone to your visual projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>.mp-filmstrip::-webkit-scrollbar{height:6px;}.mp-filmstrip::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);border-radius:4px;}.mp-filmstrip::-webkit-scrollbar-thumb{background:rgba(213,207,206,0.2);border-radius:4px;}</style>
+
+    <!-- 3. Storyboard Grid -->
+    <section style="padding:120px 0;background:#0a0a0a;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header" style="margin-bottom:60px;text-align:center;">
+                <span class="section-label">Storyboard</span>
+                <h2 class="text-4xl md:text-5xl font-bold">Frames That Move</h2>
+            </div>
+            <div class="mp-storyboard" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1000px;margin:0 auto;">
+                <div style="border:2px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;position:relative;">
+                    <img src="assets/images/portfolio/medical.png" alt="Medical Production" style="width:100%;height:220px;object-fit:cover;">
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:4px;font-size:0.7rem;color:var(--primary);font-family:monospace;">SCENE 01</div>
+                </div>
+                <div style="border:2px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;position:relative;">
+                    <img src="assets/images/portfolio/cosmetics.png" alt="Cosmetic Production" style="width:100%;height:220px;object-fit:cover;">
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:4px;font-size:0.7rem;color:var(--primary);font-family:monospace;">SCENE 02</div>
+                </div>
+                <div style="border:2px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;position:relative;">
+                    <img src="assets/images/portfolio/Real estate .png" alt="Real Estate Production" style="width:100%;height:220px;object-fit:cover;">
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:4px;font-size:0.7rem;color:var(--primary);font-family:monospace;">SCENE 03</div>
+                </div>
+                <div style="border:2px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;position:relative;">
+                    <img src="assets/images/portfolio/cosmetics.png" alt="Product Shoot" style="width:100%;height:220px;object-fit:cover;">
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:4px;font-size:0.7rem;color:var(--primary);font-family:monospace;">SCENE 04</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>@media(min-width:768px){.mp-storyboard{grid-template-columns:repeat(2,1fr)!important;}}</style>
+
+    <!-- 4. Metrics: Circular Dial -->
+    <section class="dm-metrics" style="padding:100px 0 160px 0;background:var(--dark-light);">
+        <div style="max-width:1000px;margin:0 auto;padding:0 20px;">
+            <div class="mp-dials" style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;">
+                <div style="text-align:center;">
+                    <div style="width:140px;height:140px;border-radius:50%;border:3px solid rgba(213,207,206,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;">
+                        <div class="metric-value" data-target="500" data-suffix="+" style="font-size:2.5rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;line-height:1;">0</div>
+                    </div>
+                    <div class="metric-label" style="color:var(--secondary);text-transform:uppercase;letter-spacing:0.1em;font-size:0.8rem;" data-i18n="mp_metric_videos">Videos Produced</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:140px;height:140px;border-radius:50%;border:3px solid rgba(213,207,206,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;">
+                        <div class="metric-value" data-target="10" data-suffix="M+" style="font-size:2.5rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;line-height:1;">0</div>
+                    </div>
+                    <div class="metric-label" style="color:var(--secondary);text-transform:uppercase;letter-spacing:0.1em;font-size:0.8rem;" data-i18n="mp_metric_views">Total Views</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:140px;height:140px;border-radius:50%;border:3px solid rgba(213,207,206,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;">
+                        <div class="metric-value" data-target="8" data-suffix="K" style="font-size:2.5rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;line-height:1;">0</div>
+                    </div>
+                    <div class="metric-label" style="color:var(--secondary);text-transform:uppercase;letter-spacing:0.1em;font-size:0.8rem;" data-i18n="mp_metric_res">Resolution Standards</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:140px;height:140px;border-radius:50%;border:3px solid rgba(213,207,206,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;">
+                        <div class="metric-value" data-target="100" data-suffix="%" style="font-size:2.5rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;line-height:1;">0</div>
+                    </div>
+                    <div class="metric-label" style="color:var(--secondary);text-transform:uppercase;letter-spacing:0.1em;font-size:0.8rem;" data-i18n="mp_metric_quality">Visual Quality</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>@media(min-width:768px){.mp-dials{grid-template-columns:repeat(4,1fr)!important;}}</style>
+
+    <!-- Final CTA: Spotlight -->
+    <div class="relative z-30 w-full" style="margin-top:-160px;background:transparent;padding-top:113px;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto rounded-[40px] relative border border-white/10 overflow-hidden cta-glow -mb-40" style="background:#0a0a0a;box-shadow:0 0 60px rgba(213,207,206,0.08),0 20px 50px rgba(0,0,0,0.5);animation:cardFloat 6s ease-in-out infinite;">
+                <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(213,207,206,0.08),transparent 50%);pointer-events:none;"></div>
+                <div class="flex flex-col items-center p-12 lg:p-20 relative z-10 gap-12 text-center">
+                    <div class="lg:w-full z-10 text-center">
+                        <h2 class="text-4xl sm:text-6xl font-bold text-white mb-6" data-i18n="dm_cta_mp_h">Tell your story<br><span class="text-gray-400">cinematically.</span></h2>
+                        <a href="contact.html" class="inline-flex items-center justify-center bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105" data-i18n="svc_mp_btn">Book a Shoot</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        @keyframes cardFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+        .cta-glow::before{content:'';position:absolute;inset:-1px;border-radius:40px;padding:1px;background:linear-gradient(135deg,rgba(213,207,206,0.3),transparent,rgba(213,207,206,0.1));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0.6;}
+    </style>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0a0a] pt-56 pb-12 relative z-10 font-sans">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+            <a href="index.html" class="mb-8 hover:opacity-80 transition-opacity inline-block">
+                <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-12 w-auto filter grayscale opacity-90">
+            </a>
+            <div class="w-full h-px bg-white/10 mb-16 max-w-4xl"></div>
+            <ul class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-sm text-gray-300 font-medium mb-16">
+                <li><a href="index.html#home" class="hover:text-white">Works</a></li>
+                <li><a href="services.html" class="hover:text-white">Services</a></li>
+                <li><a href="about.html" class="hover:text-white">About</a></li>
+                <li><a href="projects.html" class="hover:text-white">Projects</a></li>
+                <li><a href="contact.html" class="hover:text-white">Contact us</a></li>
+            </ul>
+            <div class="text-center text-xs text-gray-600">&copy; 2026 Grey Agency. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/main.js?v=5"></script>
+    <script src="js/service-pages.js?v=1"></script>
+</body>
+
+</html>

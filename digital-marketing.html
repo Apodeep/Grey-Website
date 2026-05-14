@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Digital Marketing - Grey Agency</title>
+    <meta name="description" content="Transform your brand with cutting-edge digital marketing strategies. Data-driven campaigns that deliver measurable results.">
+
+    <link rel="icon" type="image/png" href="assets/images/grey logo 2.png">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#ffffff',
+                        'primary-dark': '#e0e0e0',
+                        'secondary': '#808080',
+                        'dark': '#000000',
+                        'dark-light': '#1a1a1a',
+                        'accent': '#808080',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out infinite 2s',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out 0.2s',
+                        'zoom-in': 'zoomIn 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(255, 255, 255, 0.5)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        zoomIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { 
+                                boxShadow: '0 0 20px rgba(213, 207, 206, 0.3)',
+                                borderColor: 'rgba(213, 207, 206, 0.3)'
+                            },
+                            '50%': { 
+                                boxShadow: '0 0 40px rgba(213, 207, 206, 0.6)',
+                                borderColor: 'rgba(213, 207, 206, 0.6)'
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css?v=7">
+    <style>
+        .dm-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(128, 128, 128, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(128, 128, 128, 0.04));
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent, rgba(128, 128, 128, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #808080 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(128, 128, 128, 0.05));
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .feature-icon {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(128, 128, 128, 0.1));
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #ffffff, #808080);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .counter {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ffffff, #808080);
+            color: #000000;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.2);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-highlight {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-highlight:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .feature-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Marquee Section Styles */
+        .nm-testimonial-marquee-wrap {
+            overflow: hidden;
+            width: 100%;
+            background: #0f0f0f;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .nm-testimonial-marquee {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .js-marquee-wrapper {
+            display: flex;
+            flex-shrink: 0;
+            gap: 30px;
+            min-width: 100%;
+        }
+
+        .marquee-left {
+            animation: scroll-left 60s linear infinite;
+        }
+
+        .marquee-right {
+            animation: scroll-right 60s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-50% - 15px)); }
+        }
+
+        @keyframes scroll-right {
+            from { transform: translateX(calc(-50% - 15px)); }
+            to { transform: translateX(0); }
+        }
+
+        .nm-testimonial-marquee:hover .js-marquee-wrapper {
+            animation-play-state: paused;
+        }
+
+        .nm-testimonial-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(213, 207, 206, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            width: 450px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 640px) {
+            .nm-testimonial-item {
+                width: 320px;
+                padding: 1.5rem;
+            }
+            .comment {
+                font-size: 1rem;
+            }
+        }
+
+        .nm-testimonial-item:hover {
+            border-color: rgba(213, 207, 206, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .comment {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #fef7f5;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .name-x-rating {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(213, 207, 206, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #d5cfce;
+            font-size: 0.95rem;
+        }
+
+        .author-name span {
+            color: #ffffff;
+        }
+
+        .ratting-wrap {
+            display: flex;
+            gap: 2px;
+            color: #ffcc00;
+        }
+
+        .star-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white font-sans antialiased"
+    style="font-family: 'Cairo', 'Hacen Maghreb', sans-serif; color: #fef7f5;">
+
+    <nav class="fixed top-0 inset-x-0 z-50 pt-4 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto">
+            <div class="bg-dark/95 backdrop-blur-sm border border-primary rounded-full px-6 sm:px-8 lg:px-12">
+                <div class="grid h-16 sm:h-20 grid-cols-2 md:grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 md:gap-3 lg:gap-4">
+                    <a href="index.html" class="flex items-center justify-self-start hover:opacity-80 transition-opacity duration-300 shrink-0">
+                        <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-10 sm:h-12 w-auto">
+                    </a>
+
+                    <div class="hidden md:flex flex-nowrap items-center justify-center gap-x-2 lg:gap-x-3 xl:gap-x-4 min-w-0 w-full px-1">
+                        <a href="index.html#home"
+                            class="nav-link shrink-0 text-white hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_home">Home</a>
+                        <a href="about.html"
+                            class="nav-link shrink-0 text-white hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_about">About</a>
+                        <a href="services.html"
+                            class="nav-link shrink-0 text-white hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_services">Services</a>
+                        <a href="index.html#partners"
+                            class="nav-link shrink-0 text-white hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_partners">Partners</a>
+                        <a href="portfolio.html"
+                            class="nav-link shrink-0 text-white hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_portfolio">Portfolio</a>
+                        <a href="projects.html"
+                            class="nav-link shrink-0 text-white hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_projects">Projects</a>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-end gap-x-3 shrink-0 justify-self-end">
+                        <button class="lang-toggle" aria-label="Switch language">عربي</button>
+                        <a href="contact.html"
+                            class="bg-primary border border-primary hover:bg-primary-dark px-5 lg:px-6 py-2 rounded-full font-semibold text-sm lg:text-base transition-all duration-300 hover:scale-105 whitespace-nowrap"
+                            style="color: #0f0f0f;" data-i18n="nav_contact">
+                            Contact Us
+                        </a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="md:hidden col-start-2 row-start-1 justify-self-end text-white hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-4 mx-4 bg-dark-light border border-primary rounded-2xl">
+            <div class="container mx-auto px-6 py-6 space-y-4">
+                <a href="index.html#home" class="block text-white hover:text-primary transition-colors py-2" data-i18n="nav_home">Home</a>
+                <a href="about.html" class="block text-white hover:text-primary transition-colors py-2" data-i18n="nav_about">About</a>
+                <a href="services.html"
+                    class="block text-white hover:text-primary transition-colors py-2" data-i18n="nav_services">Services</a>
+                <a href="index.html#partners"
+                    class="block text-white hover:text-primary transition-colors py-2" data-i18n="nav_partners">Partners</a>
+                <a href="portfolio.html"
+                    class="block text-white hover:text-primary transition-colors py-2" data-i18n="nav_portfolio">Portfolio</a>
+                <a href="projects.html"
+                    class="block text-white hover:text-primary transition-colors py-2" data-i18n="nav_projects">Projects</a>
+                <button class="lang-toggle w-full py-2 text-center" aria-label="Switch language">عربي</button>
+                <a href="contact.html"
+                    class="block bg-primary border border-primary hover:bg-primary-dark px-6 py-3 rounded-full font-semibold text-center transition-all duration-300"
+                    style="color: #0f0f0f;" data-i18n="nav_contact">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="dm-hero pt-32 pb-20">
+        <div class="hero-pattern"></div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-element" style="width: 100px; height: 100px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 150px; height: 150px; top: 70%; right: 15%; animation-delay: 2s;"></div>
+        <div class="floating-element" style="width: 80px; height: 80px; bottom: 20%; left: 20%; animation-delay: 4s;"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-5xl mx-auto">
+                <div class="stagger-item" style="animation-delay: 0.1s;">
+                    <span class="inline-block py-2 px-6 rounded-full border border-primary/30 bg-dark/50 backdrop-blur-md text-primary mb-8 text-sm font-semibold tracking-widest uppercase">Digital Excellence</span>
+                </div>
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold mb-8 section-title stagger-item" style="animation-delay: 0.2s;">
+                    <span style="color: #fef7f5;">Digital Marketing</span> <span class="text-gradient-primary">Solutions</span>
+                </h1>
+                <p class="text-xl max-w-3xl mx-auto text-secondary leading-relaxed mb-12 stagger-item" style="animation-delay: 0.3s;">
+                    Transform your digital presence with data-driven strategies, creative campaigns, and cutting-edge technology that deliver measurable results and drive business growth.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 stagger-item" style="animation-delay: 0.4s;">
+                    <a href="#services" class="cta-button">
+                        Explore Services
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center px-10 py-4 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold text-lg transition-all duration-300">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="py-20 relative z-10" style="background: linear-gradient(135deg, rgba(28, 28, 28, 0.9), rgba(15, 15, 15, 0.9));">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="stats-grid max-w-6xl mx-auto">
+                <div class="stat-card stagger-item" style="animation-delay: 0.5s;">
+                    <div class="counter" data-target="500">0</div>
+                    <div class="text-secondary font-semibold">Campaigns Launched</div>
+                </div>
+                <div class="stat-card stagger-item" style="animation-delay: 0.6s;">
+                    <div class="counter" data-target="350">0</div>
+                    <div class="text-secondary font-semibold">% ROI Average</div>
+                </div>
+                <div class="stat-card stagger-item" style="animation-delay: 0.7s;">
+                    <div class="counter" data-target="98">0</div>
+                    <div class="text-secondary font-semibold">% Client Satisfaction</div>
+                </div>
+                <div class="stat-card stagger-item" style="animation-delay: 0.8s;">
+                    <div class="counter" data-target="15">0</div>
+                    <div class="text-secondary font-semibold">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative z-10" style="background: linear-gradient(135deg, rgba(15, 15, 15, 0.95), rgba(28, 28, 28, 0.95));">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 section-title stagger-item" style="animation-delay: 0.9s;">
+                    <span style="color: #fef7f5;">Our Digital</span> <span class="text-gradient-primary">Services</span>
+                </h2>
+                <p class="text-xl text-secondary max-w-3xl mx-auto leading-relaxed stagger-item" style="animation-delay: 1.0s;">
+                    Comprehensive digital marketing solutions designed to elevate your brand and accelerate your growth in the digital landscape.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: SEO -->
+                <div class="service-card stagger-item" style="animation-delay: 1.1s;">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">SEO Optimization</h3>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Boost your search rankings with advanced SEO strategies, keyword optimization, and content marketing that drives organic traffic.
+                    </p>
+                    <ul class="space-y-3 text-sm text-secondary">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Keyword Research & Analysis
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            On-Page & Technical SEO
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Content Strategy & Optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Social Media -->
+                <div class="service-card stagger-item" style="animation-delay: 1.2s;">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Social Media Marketing</h3>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Build brand awareness and engagement across all social platforms with compelling content and strategic community management.
+                    </p>
+                    <ul class="space-y-3 text-sm text-secondary">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Content Creation & Curation
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Community Management
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Paid Social Advertising
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: PPC -->
+                <div class="service-card stagger-item" style="animation-delay: 1.3s;">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">PPC Advertising</h3>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Maximize your ROI with targeted pay-per-click campaigns across Google, Facebook, and other advertising platforms.
+                    </p>
+                    <ul class="space-y-3 text-sm text-secondary">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Google Ads Management
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Campaign Optimization
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Conversion Rate Optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: Email Marketing -->
+                <div class="service-card stagger-item" style="animation-delay: 1.4s;">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Email Marketing</h3>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Nurture leads and build customer relationships with personalized email campaigns that drive engagement and conversions.
+                    </p>
+                    <ul class="space-y-3 text-sm text-secondary">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Automated Email Sequences
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Newsletter Design
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            A/B Testing & Analytics
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 5: Content Marketing -->
+                <div class="service-card stagger-item" style="animation-delay: 1.5s;">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Content Marketing</h3>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Create compelling content that resonates with your audience and establishes your brand as an industry authority.
+                    </p>
+                    <ul class="space-y-3 text-sm text-secondary">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Blog & Article Writing
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Video Content Production
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Infographics & Visual Content
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 6: Analytics -->
+                <div class="service-card stagger-item" style="animation-delay: 1.6s;">
+                    <div class="feature-icon">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Analytics & Reporting</h3>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Make data-driven decisions with comprehensive analytics, detailed reporting, and actionable insights to optimize your marketing strategy.
+                    </p>
+                    <ul class="space-y-3 text-sm text-secondary">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Performance Tracking
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Custom Dashboards
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            ROI Analysis
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-24 relative z-10" style="background: linear-gradient(135deg, #1c1c1c 0%, #0f0f0f 100%);">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 section-title stagger-item" style="animation-delay: 1.7s;">
+                    <span style="color: #fef7f5;">Our Strategic</span> <span class="text-gradient-primary">Process</span>
+                </h2>
+                <p class="text-xl text-secondary max-w-3xl mx-auto leading-relaxed stagger-item" style="animation-delay: 1.8s;">
+                    A systematic approach to digital marketing that ensures consistent results and measurable success for your business.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="process-step stagger-item" style="animation-delay: 1.9s;">
+                    <div class="text-4xl font-bold text-primary mb-4">01</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Discovery & Research</h3>
+                    <p class="text-secondary leading-relaxed">
+                        We analyze your market, competitors, and target audience to develop data-driven insights that inform our strategy.
+                    </p>
+                </div>
+
+                <div class="process-step stagger-item" style="animation-delay: 2.0s;">
+                    <div class="text-4xl font-bold text-primary mb-4">02</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Strategy Development</h3>
+                    <p class="text-secondary leading-relaxed">
+                        Custom-tailored marketing strategies designed to achieve your specific business objectives and maximize ROI.
+                    </p>
+                </div>
+
+                <div class="process-step stagger-item" style="animation-delay: 2.1s;">
+                    <div class="text-4xl font-bold text-primary mb-4">03</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Implementation</h3>
+                    <p class="text-secondary leading-relaxed">
+                        Expert execution of campaigns across all digital channels with creative content and precise targeting.
+                    </p>
+                </div>
+
+                <div class="process-step stagger-item" style="animation-delay: 2.2s;">
+                    <div class="text-4xl font-bold text-primary mb-4">04</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Optimization</h3>
+                    <p class="text-secondary leading-relaxed">
+                        Continuous monitoring, testing, and refinement to improve performance and deliver exceptional results.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </section>
+
+    <!-- Testimonial Marquee Section -->
+    <section class="nm-testimonial-marquee-wrap relative z-10" style="background: linear-gradient(135deg, rgba(15, 15, 15, 0.95), rgba(28, 28, 28, 0.95));">
+        <div class="container mx-auto px-4 mb-12">
+            <div class="text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 section-title">
+                    <span class="text-gradient-primary">Voices of Success</span>
+                </h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- row-1 (left) -->
+        <div class="nm-testimonial-marquee">
+            <div class="js-marquee-wrapper marquee-left">
+                <!-- Original Content -->
+                <div class="nm-testimonial-wrap flex gap-[30px]">
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“This is a very versatile WordPress theme. Many features combined with Elementor and solid support.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>Emma Mark</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“Quick response, very good support. Solutions found to respond to requests.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>Andrahernest</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“Great theme! Easy for make amazing website.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>John Smith</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate Content for seamless loop -->
+                <div class="nm-testimonial-wrap flex gap-[30px]">
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“This is a very versatile WordPress theme. Many features combined with Elementor and solid support.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>Emma Mark</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- row-2 (right) -->
+        <div class="nm-testimonial-marquee">
+            <div class="js-marquee-wrapper marquee-right">
+                <!-- Original Content -->
+                <div class="nm-testimonial-wrap flex gap-[30px]">
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“Author responds to questions within 24 hours, solution focussed. thank you.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>Mark</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“Excellent work from those guys!! Solved all problems - great Theme.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>NCBDS</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“Excellent work from those guys!! Solved all problems - great Theme.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>Empson</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate Content for seamless loop -->
+                <div class="nm-testimonial-wrap flex gap-[30px]">
+                    <div class="nm-testimonial-item">
+                        <p class="comment">“Author responds to questions within 24 hours, solution focussed. thank you.”</p>
+                        <div class="name-x-rating">
+                            <p class="author-name"><span>Mark</span> - author</p>
+                            <div class="ratting-wrap">
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="star-icon" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="py-20 relative z-10" style="background: #0f0f0f;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 section-title stagger-item" style="animation-delay: 2.3s;">
+                    <span style="color: #fef7f5;">Technology</span> <span class="text-gradient-primary">Stack</span>
+                </h2>
+                <p class="text-xl text-secondary max-w-3xl mx-auto leading-relaxed stagger-item" style="animation-delay: 2.4s;">
+                    Cutting-edge tools and platforms that power our digital marketing campaigns and deliver superior results.
+                </p>
+            </div>
+
+            <div class="tech-stack stagger-item" style="animation-delay: 2.5s;">
+                <div class="tech-badge">Google Analytics</div>
+                <div class="tech-badge">SEMrush</div>
+                <div class="tech-badge">HubSpot</div>
+                <div class="tech-badge">Mailchimp</div>
+                <div class="tech-badge">Facebook Ads</div>
+                <div class="tech-badge">Google Ads</div>
+                <div class="tech-badge">Ahrefs</div>
+                <div class="tech-badge">Buffer</div>
+                <div class="tech-badge">Canva</div>
+                <div class="tech-badge">Adobe Creative</div>
+                <div class="tech-badge">Hotjar</div>
+                <div class="tech-badge">Google Tag Manager</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 relative z-10" style="background: linear-gradient(135deg, rgba(28, 28, 28, 0.9), rgba(15, 15, 15, 0.9));">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 section-title stagger-item" style="animation-delay: 2.6s;">
+                    <span style="color: #fef7f5;">Client</span> <span class="text-gradient-primary">Testimonials</span>
+                </h2>
+                <p class="text-xl text-secondary max-w-3xl mx-auto leading-relaxed stagger-item" style="animation-delay: 2.7s;">
+                    Don't just take our word for it. Here's what our clients have to say about working with Grey Agency.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card stagger-item" style="animation-delay: 2.8s;">
+                    <div class="quote-icon">"</div>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Grey Agency transformed our digital presence completely. Their strategic approach to SEO and content marketing increased our organic traffic by 300% in just 6 months.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-dark font-bold">
+                            SA
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Sarah Ahmed</div>
+                            <div class="text-sm text-secondary">CEO, TechStart Egypt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card stagger-item" style="animation-delay: 2.9s;">
+                    <div class="quote-icon">"</div>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        The team at Grey Agency delivered exceptional results with our PPC campaigns. We saw a 250% increase in conversions while reducing our cost per acquisition by 40%.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-dark font-bold">
+                            MK
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Mohammed Khalil</div>
+                            <div class="text-sm text-secondary">Marketing Director, Saudi Retail Co.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card stagger-item" style="animation-delay: 3.0s;">
+                    <div class="quote-icon">"</div>
+                    <p class="text-secondary mb-6 leading-relaxed">
+                        Their social media strategy completely revitalized our brand. Engagement rates increased by 450% and we've built a loyal community of followers across all platforms.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-dark font-bold">
+                            LH
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Laila Hassan</div>
+                            <div class="text-sm text-secondary">Founder, Fashion Forward KSA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-24 relative z-10" style="background: #0f0f0f;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 section-title stagger-item" style="animation-delay: 3.1s;">
+                    <span style="color: #fef7f5;">Why Choose</span> <span class="text-gradient-primary">Grey Agency?</span>
+                </h2>
+                <p class="text-xl text-secondary max-w-3xl mx-auto leading-relaxed stagger-item" style="animation-delay: 3.2s;">
+                    We combine creativity, strategy, and technology to deliver digital marketing solutions that drive real business results.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-highlight stagger-item" style="animation-delay: 3.3s;">
+                    <div class="feature-number">01</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Data-Driven Strategy</h3>
+                    <p class="text-secondary leading-relaxed">
+                        Every decision we make is backed by comprehensive data analysis and market research.
+                    </p>
+                </div>
+
+                <div class="feature-highlight stagger-item" style="animation-delay: 3.4s;">
+                    <div class="feature-number">02</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Creative Excellence</h3>
+                    <p class="text-secondary leading-relaxed">
+                        Our creative team delivers stunning visuals and compelling content that captivates audiences.
+                    </p>
+                </div>
+
+                <div class="feature-highlight stagger-item" style="animation-delay: 3.5s;">
+                    <div class="feature-number">03</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Proven Results</h3>
+                    <p class="text-secondary leading-relaxed">
+                        We have a track record of delivering measurable ROI and exceeding client expectations.
+                    </p>
+                </div>
+
+                <div class="feature-highlight stagger-item" style="animation-delay: 3.6s;">
+                    <div class="feature-number">04</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Dedicated Support</h3>
+                    <p class="text-secondary leading-relaxed">
+                        Our team provides ongoing support and strategic guidance to ensure long-term success.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative z-10" style="background: linear-gradient(135deg, rgba(28, 28, 28, 0.9), rgba(15, 15, 15, 0.9));">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 section-title stagger-item" style="animation-delay: 3.7s;">
+                    <span style="color: #fef7f5;">Ready to Transform</span> <span class="text-gradient-primary">Your Digital Presence?</span>
+                </h2>
+                <p class="text-xl text-secondary mb-12 max-w-2xl mx-auto leading-relaxed stagger-item" style="animation-delay: 3.8s;">
+                    Let's create a powerful digital marketing strategy that drives real results for your business. Get in touch with our experts today.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 stagger-item" style="animation-delay: 3.9s;">
+                    <a href="contact.html" class="cta-button">
+                        Start Your Campaign
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="portfolio.html" class="inline-flex items-center justify-center px-10 py-4 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold text-lg transition-all duration-300">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Footer CTA Section -->
+    <div class="relative z-30 mt-24 -mb-32 w-full pointer-events-none">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto rounded-[40px] relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 border border-white/10 group hover:border-white/20 pointer-events-auto" style="background: linear-gradient(145deg, #1a1a1a, #0a0a0a);">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-[40px] pointer-events-none"></div>
+                
+                <div class="flex flex-col lg:flex-row items-center p-12 lg:p-20 relative z-10 gap-12">
+                    <div class="lg:w-3/5 z-10 text-center lg:text-left">
+                        <h2 class="text-4xl sm:text-6xl font-bold text-white mb-6 leading-[1.1] tracking-tight">Experience superior<br><span class="text-gray-400">digital marketing</span></h2>
+                        <p class="text-gray-400 text-lg mb-10 max-w-md mx-auto lg:mx-0">Discuss your project with our expert team and transform your digital presence today.</p>
+                        <a href="contact.html" class="inline-flex items-center justify-center bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl mb-12">
+                            Get started
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        
+                        <!-- Contact / Invoice Data -->
+                        <div class="pt-8 border-t border-white/10 flex flex-wrap gap-x-12 gap-y-6 text-sm text-left justify-center lg:justify-start">
+                            <div>
+                                <div class="text-gray-500 mb-1 font-semibold uppercase tracking-wider text-[10px]">Locations</div>
+                                <div class="text-gray-300">Cairo | Mansoura<br>Riyadh | Jeddah</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 mb-1 font-semibold uppercase tracking-wider text-[10px]">Phone Number</div>
+                                <div class="text-gray-300">+20 106 272 7462<br>+966 50 487 1435</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 mb-1 font-semibold uppercase tracking-wider text-[10px]">Email Address</div>
+                                <div class="text-gray-300 hover:text-white transition-colors"><a href="mailto:info@greymarketingsolutions.com">info@greymarketingsolutions.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-2/5 hidden lg:flex justify-end relative">
+                       <div class="w-72 h-72 rounded-full border border-white/10 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                           <div class="absolute inset-0 bg-white/5 animate-pulse"></div>
+                           <img src="assets/images/grey logo 2.png" alt="Agency Logo" class="w-36 opacity-30 filter grayscale hover:opacity-80 transition-opacity duration-500">
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Footer Minimalist -->
+    <footer class="bg-[#0a0a0a] pt-56 pb-12 relative z-10 font-sans">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+            
+            <!-- Logo Section -->
+            <a href="index.html" class="mb-8 hover:opacity-80 transition-opacity inline-block">
+                <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-12 w-auto filter grayscale opacity-90">
+            </a>
+
+            <!-- Ticker / Services List -->
+            <div class="flex flex-wrap justify-center items-center gap-4 text-xs tracking-[0.15em] text-gray-400 mb-16 uppercase font-medium text-center leading-relaxed">
+                <span class="opacity-50 hidden sm:inline">•</span>
+                <span>Digital Marketing</span>
+                <span class="opacity-50">•</span>
+                <span>Branding</span>
+                <span class="opacity-50">•</span>
+                <span>Media Production</span>
+                <span class="opacity-50">•</span>
+                <span>Media Buying</span>
+                <span class="opacity-50 hidden sm:inline">•</span>
+            </div>
+
+            <!-- Separator -->
+            <div class="w-full h-px bg-white/10 mb-16 max-w-4xl"></div>
+
+            <!-- Navigation Links -->
+            <ul class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-sm text-gray-300 font-medium mb-16">
+                <li><a href="index.html#home" class="hover:text-white transition-colors duration-300">Works</a></li>
+                <li><a href="services.html" class="hover:text-white transition-colors duration-300">Services</a></li>
+                <li><a href="about.html" class="hover:text-white transition-colors duration-300">About</a></li>
+                <li><a href="projects.html" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                <li><a href="contact.html" class="hover:text-white transition-colors duration-300">Contact us</a></li>
+            </ul>
+
+            <!-- Social Media Rounded Boxes -->
+            <div class="flex flex-wrap justify-center gap-4 mb-20">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/17qPzrv846/?mibextid=wwXIfr" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/grey_agencyy?igsh=MXZvZzYzYXd5cXd1Mg==" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/company/grey-agencyy/" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@grey.agency6" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg>
+                </a>
+                <!-- YouTube -->
+                <a href="https://youtube.com/@greyagency-o1h?si=uyyGb6_7PHduOeIf" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                </a>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="flex flex-wrap justify-center items-center gap-4 text-xs text-gray-500 mb-6">
+                <a href="#" class="hover:text-gray-300 transition-colors">Terms & Conditions</a>
+                <span class="opacity-50">|</span>
+                <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                <span class="opacity-50">|</span>
+                <a href="#" class="hover:text-gray-300 transition-colors">Disclosures</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-xs text-gray-600">
+                &copy; 2026 Grey Agency. All Rights Reserved.
+            </div>
+            
+        </div>
+    </footer>
+
+    <button id="scroll-to-top"
+        class="fixed bottom-8 end-8 bg-primary hover:bg-primary-dark p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 glow-effect"
+        style="color: #0f0f0f;" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script src="js/main.js?v=7"></script>
+    <script>
+        // Counter Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            const countUp = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / speed;
+
+                const updateCounter = () => {
+                    const current = +counter.innerText;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current + increment);
+                        setTimeout(updateCounter, 1);
+                    } else {
+                        if (target === 350) {
+                            counter.innerText = target + '%';
+                        } else if (target === 98) {
+                            counter.innerText = target + '%';
+                        } else {
+                            counter.innerText = target + '+';
+                        }
+                    }
+                };
+
+                updateCounter();
+            };
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        countUp(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+
+            // Reveal animations
+            const revealElements = document.querySelectorAll('.stagger-item');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

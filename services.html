@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Services - Grey Agency</title>
+    <meta name="description" content="Explore Grey Agency's Services - Digital Marketing, Branding, Media Production, and more.">
+
+    <link rel="icon" type="image/png" href="assets/images/grey logo 2.png">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#d5cfce',
+                        'primary-dark': '#afacab',
+                        'secondary': '#989494',
+                        'dark': '#0f0f0f',
+                        'dark-light': '#1c1c1c',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(213, 207, 206, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(213, 207, 206, 0.8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css?v=7">
+    <style>
+        /* Custom Styles for Services Page */
+        
+        .services-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f0f0f;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        /* Abstract glowing grid background */
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(213, 207, 206, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(213, 207, 206, 0.03) 1px, transparent 1px);
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2.5);
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) scale(2.5); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px) scale(2.5); }
+        }
+
+        .svc-glass-card {
+            background: rgba(28, 28, 28, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(213, 207, 206, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .svc-glass-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(213, 207, 206, 0.5), transparent, rgba(152, 148, 148, 0.5));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .svc-glass-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(213, 207, 206, 0.15);
+            background: rgba(28, 28, 28, 0.7);
+        }
+
+        .svc-glass-card:hover::after {
+            opacity: 1;
+        }
+
+        .svc-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(213, 207, 206, 0.1), rgba(152, 148, 148, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(213, 207, 206, 0.2);
+            transition: transform 0.5s ease;
+        }
+
+        .svc-glass-card:hover .svc-icon-wrapper {
+            transform: translateZ(30px) rotateY(15deg);
+            background: linear-gradient(135deg, rgba(213, 207, 206, 0.2), rgba(152, 148, 148, 0.1));
+            box-shadow: 0 0 20px rgba(213, 207, 206, 0.3);
+        }
+
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #d5cfce 50%, #989494 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Large background letters for sections */
+        .bg-letters {
+            position: absolute;
+            font-size: 25vw;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(213, 207, 206, 0.03);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+
+    </style>
+</head>
+
+<body class="bg-dark text-white font-sans antialiased"
+    style="font-family: 'Cairo', 'Hacen Maghreb', sans-serif; color: #fef7f5;">
+
+    <nav class="fixed top-0 inset-x-0 z-50 pt-4 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto">
+            <div class="bg-dark/95 backdrop-blur-sm border border-primary rounded-full px-6 sm:px-8 lg:px-12">
+                <div class="grid h-16 sm:h-20 grid-cols-2 md:grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 md:gap-3 lg:gap-4">
+                    <a href="index.html" class="flex items-center justify-self-start hover:opacity-80 transition-opacity duration-300 shrink-0">
+                        <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-10 sm:h-12 w-auto">
+                    </a>
+
+                    <div class="hidden md:flex flex-nowrap items-center justify-center gap-x-2 lg:gap-x-3 xl:gap-x-4 min-w-0 w-full px-1">
+                        <a href="index.html#home"
+                            class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap"
+                            style="color: #fef7f5;" data-i18n="nav_home">Home</a>
+                        <a href="about.html"
+                            class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap"
+                            style="color: #fef7f5;" data-i18n="nav_about">About</a>
+                        <a href="services.html"
+                            class="nav-link shrink-0 text-primary font-bold transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap"
+                             data-i18n="nav_services">Services</a>
+                        <a href="index.html#partners"
+                            class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap"
+                            style="color: #fef7f5;" data-i18n="nav_partners">Partners</a>
+                        <a href="portfolio.html"
+                            class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap"
+                            style="color: #fef7f5;" data-i18n="nav_portfolio">Portfolio</a>
+                        <a href="projects.html"
+                            class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap"
+                            style="color: #fef7f5;" data-i18n="nav_projects">Projects</a>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-end gap-x-3 shrink-0 justify-self-end">
+                        <button class="lang-toggle" aria-label="Switch language">عربي</button>
+                        <a href="contact.html"
+                            class="bg-primary border border-primary hover:bg-primary-dark px-5 lg:px-6 py-2 rounded-full font-semibold text-sm lg:text-base transition-all duration-300 hover:scale-105 whitespace-nowrap"
+                            style="color: #0f0f0f;" data-i18n="nav_contact">
+                            Contact Us
+                        </a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="md:hidden col-start-2 row-start-1 justify-self-end text-white hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-4 mx-4 bg-dark-light border border-primary rounded-2xl">
+            <div class="container mx-auto px-6 py-6 space-y-4">
+                <a href="index.html#home" class="block hover:text-primary transition-colors py-2"
+                    style="color: #fef7f5;" data-i18n="nav_home">Home</a>
+                <a href="about.html" class="block hover:text-primary transition-colors py-2"
+                    style="color: #fef7f5;" data-i18n="nav_about">About</a>
+                <a href="services.html" class="block text-primary font-bold transition-colors py-2"
+                     data-i18n="nav_services">Services</a>
+                <a href="index.html#partners" class="block hover:text-primary transition-colors py-2"
+                    style="color: #fef7f5;" data-i18n="nav_partners">Partners</a>
+                <a href="portfolio.html" class="block hover:text-primary transition-colors py-2"
+                    style="color: #fef7f5;" data-i18n="nav_portfolio">Portfolio</a>
+                <a href="projects.html" class="block hover:text-primary transition-colors py-2"
+                    style="color: #fef7f5;" data-i18n="nav_projects">Projects</a>
+                <button class="lang-toggle w-full py-2 text-center" aria-label="Switch language">عربي</button>
+                <a href="contact.html"
+                    class="block bg-primary border border-primary hover:bg-primary-dark px-6 py-3 rounded-full font-semibold text-center transition-all duration-300"
+                    style="color: #0f0f0f;" data-i18n="nav_contact">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cinematic Hero Section -->
+    <header class="services-hero">
+        <div class="grid-bg"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark/50 to-dark"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mt-20">
+            <div class="stagger-item" style="animation-delay: 0.2s;">
+                <span class="inline-block py-1 px-4 rounded-full border border-primary/30 bg-dark/50 backdrop-blur-md text-primary mb-6 text-sm font-semibold tracking-widest uppercase">What We Do</span>
+            </div>
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 stagger-item" style="animation-delay: 0.4s;">
+                <span class="text-white">Our</span>
+                <span class="text-gradient-primary">Expertise</span>3
+            </h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto text-secondary stagger-item" style="animation-delay: 0.6s; line-height: 1.8;">
+                Comprehensive marketing solutions designed to elevate your brand from every angle.
+            </p>
+        </div>
+    </header>
+
+    <!-- ATL Services Section -->
+    <section class="py-24 relative overflow-hidden" style="background-color: #0f0f0f;">
+        <div class="bg-letters">ATL</div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center justify-center gap-4 mb-4">
+                    <div class="h-[1px] w-12 bg-primary"></div>
+                    <h2 class="text-4xl font-bold text-white tracking-widest" data-i18n="nav_services">ATL SERVICES</h2>
+                    <div class="h-[1px] w-12 bg-primary"></div>
+                </div>
+                <p class="text-secondary" data-i18n="cin_a3">Above The Line — Mass Media Strategies</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+                
+                <!-- Service Card 1 -->
+                <a href="digital-marketing.html" class="svc-glass-card group flex flex-col items-center text-center cursor-pointer block">
+                    <div class="svc-icon-wrapper mx-auto">
+                        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_digital">Digital Marketing</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_dm_sub">Data-driven campaigns across all digital platforms to maximize reach, engagement, and conversion for your brand.</p>
+                </a>
+
+                <!-- Service Card 2 -->
+                <a href="branding.html" class="svc-glass-card group flex flex-col items-center text-center cursor-pointer block">
+                    <div class="svc-icon-wrapper mx-auto">
+                        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_branding">Branding</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_branding_sub">Creating unique, memorable identities that communicate your core values and stand out in competitive markets.</p>
+                </a>
+
+                <!-- Service Card 3 -->
+                <a href="media-production.html" class="svc-glass-card group flex flex-col items-center text-center cursor-pointer block">
+                    <div class="svc-icon-wrapper mx-auto">
+                        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_media_prod">Media Production</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_mp_sub">High-quality visual storytelling through video, photography, and animation that captures attention and drives action.</p>
+                </a>
+
+                <!-- Service Card 4 -->
+                <a href="media-buying.html" class="svc-glass-card group flex flex-col items-center text-center cursor-pointer block">
+                    <div class="svc-icon-wrapper mx-auto">
+                        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_media_buy">Media Buying</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_mb_sub">Strategic placement of your message across the right channels to ensure maximum ROI and audience penetration.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+
+    <!-- BTL Services Section -->
+    <section class="py-24 relative overflow-hidden bg-dark-light">
+        <div class="bg-letters" style="top: 60%;">BTL</div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center justify-center gap-4 mb-4">
+                    <div class="h-[1px] w-12 bg-primary"></div>
+                    <h2 class="text-4xl font-bold text-white tracking-widest" data-i18n="btl_services_h2">BTL SERVICES</h2>
+                    <div class="h-[1px] w-12 bg-primary"></div>
+                </div>
+                <p class="text-secondary" data-i18n="btl_services_p">Below The Line — Targeted & Direct Actions</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                <!-- Service Card 1 -->
+                <div class="svc-glass-card group" style="background: rgba(15, 15, 15, 0.4); cursor: pointer;" onclick="window.location.href='printings.html'">
+                    <div class="svc-icon-wrapper">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_printings_h">Printings</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_printings_p">
+                        Premium tangible materials, from brochures to billboards, ensuring your brand is felt in the real world.
+                    </p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="svc-glass-card group" style="background: rgba(15, 15, 15, 0.4); cursor: pointer;" onclick="window.location.href='events.html'">
+                    <div class="svc-icon-wrapper">
+                        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_events_h">Events</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_events_p">
+                        Unforgettable live experiences, product launches, and activations that connect people directly to your brand.
+                    </p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="svc-glass-card group" style="background: rgba(15, 15, 15, 0.4); cursor: pointer;" onclick="window.location.href='giveaway.html'">
+                    <div class="svc-icon-wrapper">
+                        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3" data-i18n="svc_giveaway_h">Giveaway</h3>
+                    <p class="text-secondary leading-relaxed group-hover:text-gray-300 transition-colors" data-i18n="svc_giveaway_p">
+                        Creative promotional items designed to keep your brand in the hands and minds of your target audience.
+                    </p>
+                    <div class="mt-4">
+                        <button class="bg-primary hover:bg-primary-dark text-dark px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-flex items-center gap-2" onclick="event.stopPropagation(); window.location.href='giveaway.html'">
+                            Explore Giveaway Services
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Pre-Footer CTA Section -->
+    <div class="relative z-30 mt-24 -mb-32 w-full pointer-events-none">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto rounded-[40px] relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 border border-white/10 group hover:border-white/20 pointer-events-auto" style="background: linear-gradient(145deg, #1a1a1a, #0a0a0a);">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-[40px] pointer-events-none"></div>
+                
+                <div class="flex flex-col lg:flex-row items-center p-12 lg:p-20 relative z-10 gap-12">
+                    <div class="lg:w-3/5 z-10 text-center lg:text-left">
+                        <h2 class="text-4xl sm:text-6xl font-bold text-white mb-6 leading-[1.1] tracking-tight">Experience superior<br><span class="text-gray-400">marketing solutions</span></h2>
+                        <p class="text-gray-400 text-lg mb-10 max-w-md mx-auto lg:mx-0">Discuss your project with our expert team and transform your brand today.</p>
+                        <a href="contact.html" class="inline-flex items-center justify-center bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl mb-12">
+                            Get started
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        
+                        <!-- Contact / Invoice Data -->
+                        <div class="pt-8 border-t border-white/10 flex flex-wrap gap-x-12 gap-y-6 text-sm text-left justify-center lg:justify-start">
+                            <div>
+                                <div class="text-gray-500 mb-1 font-semibold uppercase tracking-wider text-[10px]">Locations</div>
+                                <div class="text-gray-300">Cairo | Mansoura<br>Riyadh | Jeddah</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 mb-1 font-semibold uppercase tracking-wider text-[10px]">Phone Number</div>
+                                <div class="text-gray-300">+20 106 272 7462<br>+966 50 487 1435</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 mb-1 font-semibold uppercase tracking-wider text-[10px]">Email Address</div>
+                                <div class="text-gray-300 hover:text-white transition-colors"><a href="mailto:info@greymarketingsolutions.com">info@greymarketingsolutions.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-2/5 hidden lg:flex justify-end relative">
+                       <div class="w-72 h-72 rounded-full border border-white/10 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                           <div class="absolute inset-0 bg-white/5 animate-pulse"></div>
+                           <img src="assets/images/grey logo 2.png" alt="Agency Logo" class="w-36 opacity-30 filter grayscale hover:opacity-80 transition-opacity duration-500">
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Footer Minimalist -->
+    <footer class="bg-[#0a0a0a] pt-56 pb-12 relative z-10 font-sans">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+            
+            <!-- Logo Section -->
+            <a href="index.html" class="mb-8 hover:opacity-80 transition-opacity inline-block">
+                <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-12 w-auto filter grayscale opacity-90">
+            </a>
+
+            <!-- Ticker / Services List -->
+            <div class="flex flex-wrap justify-center items-center gap-4 text-xs tracking-[0.15em] text-gray-400 mb-16 uppercase font-medium text-center leading-relaxed">
+                <span class="opacity-50 hidden sm:inline">•</span>
+                <span>Brand Identity</span>
+                <span class="opacity-50">•</span>
+                <span>Digital Marketing</span>
+                <span class="opacity-50">•</span>
+                <span>Media Production</span>
+                <span class="opacity-50">•</span>
+                <span>Web Development</span>
+                <span class="opacity-50 hidden sm:inline">•</span>
+            </div>
+
+            <!-- Separator -->
+            <div class="w-full h-px bg-white/10 mb-16 max-w-4xl"></div>
+
+            <!-- Navigation Links -->
+            <ul class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-sm text-gray-300 font-medium mb-16">
+                <li><a href="index.html#home" class="hover:text-white transition-colors duration-300">Works</a></li>
+                <li><a href="services.html" class="hover:text-white transition-colors duration-300">Services</a></li>
+                <li><a href="about.html" class="hover:text-white transition-colors duration-300">About</a></li>
+                <li><a href="projects.html" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                <li><a href="contact.html" class="hover:text-white transition-colors duration-300">Contact us</a></li>
+            </ul>
+
+            <!-- Social Media Rounded Boxes -->
+            <div class="flex flex-wrap justify-center gap-4 mb-20">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/17qPzrv846/?mibextid=wwXIfr" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/grey_agencyy?igsh=MXZvZzYzYXd5cXd1Mg==" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/company/grey-agencyy/" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@grey.agency6" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" /></svg>
+                </a>
+                <!-- YouTube -->
+                <a href="https://youtube.com/@greyagency-o1h?si=uyyGb6_7PHduOeIf" target="_blank" class="w-14 h-14 rounded-2xl bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.5)] group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                </a>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="flex flex-wrap justify-center items-center gap-4 text-xs text-gray-500 mb-6">
+                <a href="#" class="hover:text-gray-300 transition-colors">Terms & Conditions</a>
+                <span class="opacity-50">|</span>
+                <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                <span class="opacity-50">|</span>
+                <a href="#" class="hover:text-gray-300 transition-colors">Disclosures</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-xs text-gray-600">
+                &copy; 2026 Grey Agency. All Rights Reserved.
+            </div>
+            
+        </div>
+    </footer>
+
+    <button id="scroll-to-top"
+        class="fixed bottom-8 end-8 bg-primary hover:bg-primary-dark p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 glow-effect"
+        style="color: #0f0f0f;" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script src="js/main.js?v=7"></script>
+    <script>
+        // Trigger reveal animations on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>

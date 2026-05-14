@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Media Buying - Grey Agency</title>
+    <meta name="description" content="Strategic Media Buying services by Grey Agency. Maximizing ROI through precision ad placement.">
+
+    <link rel="icon" type="image/png" href="assets/images/grey logo 2.png">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#d5cfce',
+                        'primary-dark': '#afacab',
+                        'secondary': '#989494',
+                        'dark': '#0f0f0f',
+                        'dark-light': '#1c1c1c',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css?v=7">
+    <link rel="stylesheet" href="css/service-pages.css?v=1">
+
+    <!-- GSAP for Infinite Gallery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+
+<body class="bg-dark text-white font-sans antialiased" style="font-family: 'Cairo', sans-serif;">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 inset-x-0 z-50 pt-4 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto">
+            <div class="bg-dark/95 backdrop-blur-sm border border-primary rounded-full px-6 sm:px-8 lg:px-12">
+                <div class="grid h-16 sm:h-20 grid-cols-2 md:grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 md:gap-3 lg:gap-4">
+                    <a href="index.html" class="flex items-center justify-self-start hover:opacity-80 transition-opacity duration-300 shrink-0">
+                        <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-10 sm:h-12 w-auto">
+                    </a>
+
+                    <div class="hidden md:flex flex-nowrap items-center justify-center gap-x-2 lg:gap-x-3 xl:gap-x-4 min-w-0 w-full px-1">
+                        <a href="index.html#home" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_home">Home</a>
+                        <a href="about.html" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_about">About</a>
+                        <a href="services.html" class="nav-link shrink-0 text-primary font-bold transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" data-i18n="nav_services">Services</a>
+                        <a href="index.html#partners" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_partners">Partners</a>
+                        <a href="portfolio.html" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_portfolio">Portfolio</a>
+                        <a href="projects.html" class="nav-link shrink-0 hover:text-primary transition-colors duration-300 text-xs md:text-sm lg:text-base whitespace-nowrap" style="color: #fef7f5;" data-i18n="nav_projects">Projects</a>
+                    </div>
+
+                    <div class="hidden md:flex items-center justify-end gap-x-3 shrink-0 justify-self-end">
+                        <button class="lang-toggle" aria-label="Switch language">عربي</button>
+                        <a href="contact.html" class="bg-primary border border-primary hover:bg-primary-dark px-5 lg:px-6 py-2 rounded-full font-semibold text-sm lg:text-base transition-all duration-300 hover:scale-105 whitespace-nowrap" style="color: #0f0f0f;" data-i18n="nav_contact">Contact Us</a>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="md:hidden col-start-2 row-start-1 justify-self-end text-white hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section: Network Map -->
+    <section class="dm-hero" style="position:relative;height:100vh;width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000;">
+        <div style="position:absolute;inset:0;z-index:1;">
+            <div style="position:absolute;top:20%;left:15%;width:12px;height:12px;border-radius:50%;background:var(--primary);opacity:0.4;"></div>
+            <div style="position:absolute;top:35%;left:25%;width:8px;height:8px;border-radius:50%;background:var(--secondary);opacity:0.3;"></div>
+            <div style="position:absolute;top:60%;left:20%;width:10px;height:10px;border-radius:50%;background:var(--primary);opacity:0.35;"></div>
+            <div style="position:absolute;top:25%;left:75%;width:14px;height:14px;border-radius:50%;background:var(--primary);opacity:0.45;"></div>
+            <div style="position:absolute;top:55%;left:80%;width:10px;height:10px;border-radius:50%;background:var(--secondary);opacity:0.3;"></div>
+            <div style="position:absolute;top:70%;left:65%;width:8px;height:8px;border-radius:50%;background:var(--primary);opacity:0.35;"></div>
+            <div style="position:absolute;top:40%;left:50%;width:16px;height:16px;border-radius:50%;background:var(--primary);opacity:0.5;box-shadow:0 0 30px rgba(213,207,206,0.3);"></div>
+            <svg style="position:absolute;inset:0;width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+                <line x1="15%" y1="20%" x2="50%" y2="40%" stroke="rgba(213,207,206,0.1)" stroke-width="1"/>
+                <line x1="25%" y1="35%" x2="50%" y2="40%" stroke="rgba(213,207,206,0.1)" stroke-width="1"/>
+                <line x1="20%" y1="60%" x2="50%" y2="40%" stroke="rgba(213,207,206,0.1)" stroke-width="1"/>
+                <line x1="75%" y1="25%" x2="50%" y2="40%" stroke="rgba(213,207,206,0.1)" stroke-width="1"/>
+                <line x1="80%" y1="55%" x2="50%" y2="40%" stroke="rgba(213,207,206,0.1)" stroke-width="1"/>
+                <line x1="65%" y1="70%" x2="50%" y2="40%" stroke="rgba(213,207,206,0.1)" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="dm-vignette"></div>
+        <div class="dm-hero-content" style="position:relative;z-index:10;text-align:center;padding:0 20px;">
+            <span style="display:inline-block;color:var(--primary);text-transform:uppercase;letter-spacing:0.3em;font-size:0.75rem;margin-bottom:20px;border:1px solid rgba(213,207,206,0.2);padding:6px 16px;border-radius:99px;">Strategic Network</span>
+            <h1 class="dm-hero-title" style="font-size:clamp(3.5rem,10vw,8rem);font-weight:900;line-height:0.9;text-transform:uppercase;margin-bottom:20px;opacity:0;transform:translateY(50px) scale(0.95);filter:blur(10px);" data-i18n="svc_mb_h1">Media<br>Buying</h1>
+            <p class="dm-hero-subtitle" style="font-size:clamp(1rem,2vw,1.25rem);color:var(--secondary);max-width:550px;margin:0 auto 40px;line-height:1.7;opacity:0;transform:translateY(30px);" data-i18n="svc_mb_sub">Strategic placement of your message across the right channels to ensure maximum ROI and audience penetration.</p>
+            <div class="dm-cta-container" style="opacity:0;transform:translateY(20px);">
+                <button class="magnetic-btn" data-i18n="svc_mb_btn">Maximize Your Reach</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Services Breakdown: Staggered Channel Cards -->
+    <section class="dm-services" style="padding:120px 0;background:var(--dark);">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header" style="margin-bottom:60px;text-align:center;">
+                <span class="section-label" data-i18n="dm_expertise_label">Our Strategy</span>
+                <h2 class="text-4xl md:text-5xl font-bold" data-i18n="svc_media_buy">Precision Placement</h2>
+            </div>
+            <div class="mb-stagger" style="display:grid;grid-template-columns:1fr;gap:24px;max-width:900px;margin:0 auto;">
+                <div class="dm-service-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px;border-radius:24px;backdrop-filter:blur(10px);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+                    <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(213,207,206,0.1),rgba(152,148,148,0.05));display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(213,207,206,0.2);">
+                        <svg style="width:28px;height:28px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="dm-card-title" style="font-size:1.5rem;font-weight:700;margin-bottom:8px;color:#fff;" data-i18n="mb_tv_h">TV & Radio</h3>
+                        <p class="dm-card-desc" style="color:var(--secondary);font-size:0.95rem;line-height:1.6;" data-i18n="mb_tv_p">Securing prime slots in traditional broadcast media for massive brand awareness and broad audience coverage.</p>
+                    </div>
+                </div>
+                <div class="dm-service-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px;border-radius:24px;backdrop-filter:blur(10px);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+                    <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(213,207,206,0.1),rgba(152,148,148,0.05));display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(213,207,206,0.2);">
+                        <svg style="width:28px;height:28px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="dm-card-title" style="font-size:1.5rem;font-weight:700;margin-bottom:8px;color:#fff;" data-i18n="mb_ooh_h">Out-of-Home</h3>
+                        <p class="dm-card-desc" style="color:var(--secondary);font-size:0.95rem;line-height:1.6;" data-i18n="mb_ooh_p">Dominating physical spaces through high-impact billboards, digital signage, and transit advertising.</p>
+                    </div>
+                </div>
+                <div class="dm-service-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px;border-radius:24px;backdrop-filter:blur(10px);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+                    <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(213,207,206,0.1),rgba(152,148,148,0.05));display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(213,207,206,0.2);">
+                        <svg style="width:28px;height:28px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="dm-card-title" style="font-size:1.5rem;font-weight:700;margin-bottom:8px;color:#fff;" data-i18n="mb_prog_h">Programmatic</h3>
+                        <p class="dm-card-desc" style="color:var(--secondary);font-size:0.95rem;line-height:1.6;" data-i18n="mb_prog_p">Automated, data-driven ad buying that targets specific demographics across the web in real-time.</p>
+                    </div>
+                </div>
+                <div class="dm-service-card" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);padding:40px;border-radius:24px;backdrop-filter:blur(10px);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+                    <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(213,207,206,0.1),rgba(152,148,148,0.05));display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(213,207,206,0.2);">
+                        <svg style="width:28px;height:28px;color:var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="dm-card-title" style="font-size:1.5rem;font-weight:700;margin-bottom:8px;color:#fff;" data-i18n="mb_perf_h">Performance Ads</h3>
+                        <p class="dm-card-desc" style="color:var(--secondary);font-size:0.95rem;line-height:1.6;" data-i18n="mb_perf_p">Social media and search advertising focused on direct response and measurable conversion growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>@media(min-width:768px){.mb-stagger{grid-template-columns:1fr 1fr;}.mb-stagger > div:nth-child(2){transform:translateY(40px);}.mb-stagger > div:nth-child(4){transform:translateY(40px);}}</style>
+
+    <!-- 3. Reach Map: Hexagonal Coverage -->
+    <section style="padding:120px 0;background:#0a0a0a;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header" style="margin-bottom:60px;text-align:center;">
+                <span class="section-label">Reach Map</span>
+                <h2 class="text-4xl md:text-5xl font-bold">Coverage Grid</h2>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:0 auto;">
+                <div class="coverage-hex" style="clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);overflow:hidden;height:220px;position:relative;transform:scale(0.9);opacity:0;animation:hexFadeIn 0.8s ease-out forwards;animation-delay:0.2s;transition:all 0.5s ease;">
+                    <img src="assets/images/mediabuying/20945294.jpg" alt="Coverage 1" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.3s ease;"></div>
+                </div>
+                <div class="coverage-hex" style="clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);overflow:hidden;height:220px;position:relative;transform:scale(0.9);opacity:0;animation:hexFadeIn 0.8s ease-out forwards;animation-delay:0.4s;transition:all 0.5s ease;">
+                    <img src="assets/images/mediabuying/37606.jpg" alt="Coverage 2" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.3s ease;"></div>
+                </div>
+                <div class="coverage-hex" style="clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);overflow:hidden;height:220px;position:relative;transform:scale(0.9);opacity:0;animation:hexFadeIn 0.8s ease-out forwards;animation-delay:0.6s;transition:all 0.5s ease;">
+                    <img src="assets/images/mediabuying/large-buildings-with-dome-lights.jpg" alt="Coverage 3" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.3s ease;"></div>
+                </div>
+                <div class="coverage-hex" style="clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);overflow:hidden;height:220px;position:relative;transform:scale(0.9);opacity:0;animation:hexFadeIn 0.8s ease-out forwards;animation-delay:0.8s;transition:all 0.5s ease;">
+                    <img src="assets/images/mediabuying/networked-cityscape-with-connected-icons.jpg" alt="Coverage 4" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.3s ease;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+    @keyframes hexFadeIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.9) translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+    .coverage-hex:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 20px 40px rgba(255,255,255,0.2);
+        z-index: 10;
+    }
+    .coverage-hex:hover img {
+        transform: scale(1.1);
+    }
+    .coverage-hex:hover div {
+        opacity: 1;
+    }
+    </style>
+
+    <!-- 4. Metrics: Dashboard Widgets -->
+    <section class="dm-metrics" style="padding:100px 0 160px 0;background:var(--dark-light);">
+        <div style="max-width:1000px;margin:0 auto;padding:0 20px;">
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+                <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:30px;text-align:center;">
+                    <div style="font-size:0.75rem;color:var(--secondary);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px;" data-i18n="mb_metric_spend">Ad Spend Managed</div>
+                    <div class="metric-value" data-target="5" data-suffix="M+" style="font-size:3rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;">0</div>
+                    <div style="width:100%;height:4px;background:rgba(255,255,255,0.05);border-radius:2px;margin-top:16px;overflow:hidden;">
+                        <div data-bar-width="80%" style="width:0;height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px;transition:width 2s ease;"></div>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:30px;text-align:center;">
+                    <div style="font-size:0.75rem;color:var(--secondary);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px;" data-i18n="mb_metric_roas">Avg. ROAS</div>
+                    <div class="metric-value" data-target="5" data-suffix="x" style="font-size:3rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;">0</div>
+                    <div style="width:100%;height:4px;background:rgba(255,255,255,0.05);border-radius:2px;margin-top:16px;overflow:hidden;">
+                        <div data-bar-width="92%" style="width:0;height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px;transition:width 2s ease;"></div>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:30px;text-align:center;">
+                    <div style="font-size:0.75rem;color:var(--secondary);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px;" data-i18n="mb_metric_partners">Media Partners</div>
+                    <div class="metric-value" data-target="20" data-suffix="+" style="font-size:3rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;">0</div>
+                    <div style="width:100%;height:4px;background:rgba(255,255,255,0.05);border-radius:2px;margin-top:16px;overflow:hidden;">
+                        <div data-bar-width="65%" style="width:0;height:100%;background:linear-gradient(90deg,var(--secondary),var(--primary));border-radius:2px;transition:width 2s ease;"></div>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:30px;text-align:center;">
+                    <div style="font-size:0.75rem;color:var(--secondary);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px;" data-i18n="mb_metric_transparency">Transparency</div>
+                    <div class="metric-value" data-target="100" data-suffix="%" style="font-size:3rem;font-weight:900;color:var(--primary);font-family:'Cairo',sans-serif;">0</div>
+                    <div style="width:100%;height:4px;background:rgba(255,255,255,0.05);border-radius:2px;margin-top:16px;overflow:hidden;">
+                        <div data-bar-width="100%" style="width:0;height:100%;background:linear-gradient(90deg,#fff,var(--primary));border-radius:2px;transition:width 2s ease;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    (function(){
+        const vals=document.querySelectorAll('.metric-value');
+        const obs=new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    const bar=entry.target.parentElement.querySelector('[data-bar-width]');
+                    if(bar) bar.style.width=bar.getAttribute('data-bar-width');
+                    obs.unobserve(entry.target);
+                }
+            });
+        },{threshold:0.5});
+        vals.forEach(v=>obs.observe(v));
+    })();
+    </script>
+
+    <!-- Final CTA: Business Card -->
+    <div class="relative z-30 w-full" style="margin-top:-160px;background:transparent;padding-top:113px;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto rounded-[40px] relative border border-white/10 overflow-hidden mb-card-glow -mb-40" style="background:linear-gradient(145deg,#1a1a1a,#0a0a0a);box-shadow:0 0 60px rgba(213,207,206,0.08),0 20px 50px rgba(0,0,0,0.5);animation:mbCardFloat 6s ease-in-out infinite;">
+                <div class="flex flex-col lg:flex-row items-center p-12 lg:p-20 relative z-10 gap-12 text-center lg:text-left">
+                    <div class="lg:w-3/5 z-10">
+                        <h2 class="text-4xl sm:text-6xl font-bold text-white mb-6" data-i18n="dm_cta_mb_h">Invest in<br><span class="text-gray-400">smart growth.</span></h2>
+                        <p class="text-gray-400 text-lg mb-10 max-w-md mx-auto lg:mx-0">Precision placement meets performance. Let's build a media strategy that scales.</p>
+                        <a href="contact.html" class="inline-flex items-center justify-center bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105" data-i18n="svc_mb_btn">Start Buying</a>
+                    </div>
+                    <div class="lg:w-2/5 hidden lg:flex justify-center relative">
+                        <div class="mb-biz-card" style="width:280px;height:180px;background:linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:all 0.5s ease;">
+                            <div style="position:absolute;top:-40px;right:-40px;width:100px;height:100px;border-radius:50%;background:rgba(213,207,206,0.08);filter:blur(30px);pointer-events:none;"></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <span style="font-size:0.75rem;color:var(--secondary);letter-spacing:0.1em;text-transform:uppercase;">Grey Agency</span>
+                                <span style="font-size:0.75rem;color:var(--primary);">Media Buying</span>
+                            </div>
+                            <div>
+                                <div style="font-size:1.25rem;color:#fff;font-weight:700;">+20 106 272 7462</div>
+                                <div style="font-size:0.8rem;color:var(--secondary);margin-top:4px;">Cairo | Riyadh</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        @keyframes mbCardFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+        .mb-biz-card:hover{transform:translateY(-6px) rotate(-2deg);box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 30px rgba(213,207,206,0.1);border-color:rgba(213,207,206,0.3);}
+        .mb-card-glow::before{content:'';position:absolute;inset:-1px;border-radius:40px;padding:1px;background:linear-gradient(135deg,rgba(213,207,206,0.3),transparent,rgba(213,207,206,0.1));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0.6;}
+    </style>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0a0a] pt-56 pb-12 relative z-10 font-sans">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+            <a href="index.html" class="mb-8 hover:opacity-80 transition-opacity inline-block">
+                <img src="assets/images/grey logo 2.png" alt="Grey Agency" class="h-12 w-auto filter grayscale opacity-90">
+            </a>
+            <div class="w-full h-px bg-white/10 mb-16 max-w-4xl"></div>
+            <ul class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-sm text-gray-300 font-medium mb-16">
+                <li><a href="index.html#home" class="hover:text-white">Works</a></li>
+                <li><a href="services.html" class="hover:text-white">Services</a></li>
+                <li><a href="about.html" class="hover:text-white">About</a></li>
+                <li><a href="projects.html" class="hover:text-white">Projects</a></li>
+                <li><a href="contact.html" class="hover:text-white">Contact us</a></li>
+            </ul>
+            <div class="text-center text-xs text-gray-600">&copy; 2026 Grey Agency. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/main.js?v=5"></script>
+    <script src="js/service-pages.js?v=1"></script>
+</body>
+
+</html>
